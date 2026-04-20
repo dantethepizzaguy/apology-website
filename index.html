@@ -1,287 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Can We Talk?</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can we talk?</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
 body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
+margin:0;
+font-family:Arial;
 text-align:center;
 color:white;
 overflow:hidden;
-background:black;
 }
 
-/* VIDEO BACKGROUND */
+/* BACKGROUND VIDEOS */
 
-.bgVideo{
+video.bg{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+right:0;
+bottom:0;
+min-width:100%;
+min-height:100%;
+z-index:-1;
 object-fit:cover;
-z-index:-2;
-filter:brightness(55%);
 }
 
-/* CONTAINER */
+/* TEXT SIZES */
 
-.container{
-max-width:420px;
-padding:25px;
+.mainText{
+font-size:32px;
+line-height:1.4;
+padding:20px;
+text-shadow:0 0 20px white;
 }
 
-/* TEXT */
-
-.glowText{
-font-size:16px;
-line-height:1.6;
-text-shadow:
-0 0 8px #fff,
-0 0 18px #bbb,
-0 0 30px #777;
-margin-bottom:15px;
-}
-
-.secondText{
-font-size:15px;
-margin-bottom:18px;
+.subText{
+font-size:28px;
+margin-top:10px;
 }
 
 .question{
-font-size:18px;
-font-weight:600;
+font-size:34px;
+margin-top:20px;
+font-weight:bold;
 }
 
-/* CHIBI VIDEO */
+/* CHIBI VIDEOS */
 
 .chibi{
-width:150px;
-margin:18px 0;
-border-radius:12px;
-box-shadow:0 0 20px rgba(255,255,255,0.2);
+width:240px;
+margin-top:20px;
 }
 
 /* BUTTONS */
 
-.buttons{
-margin-top:20px;
-display:flex;
-flex-direction:column;
-gap:12px;
-align-items:center;
+button{
+padding:18px 40px;
+font-size:22px;
+border:none;
+border-radius:40px;
+margin:15px;
+cursor:pointer;
 }
 
 .talkBtn{
-background:linear-gradient(135deg,#ffc6d9,#ffd6ea);
-border:none;
-padding:10px 22px;
-border-radius:30px;
-font-size:14px;
-cursor:pointer;
-color:#333;
-box-shadow:0 0 12px rgba(255,192,203,0.8);
+background:pink;
 }
 
 .noBtn{
-background:#1c1c1c;
-border:1px solid #555;
-color:#bbb;
-padding:10px 22px;
-border-radius:30px;
-font-size:14px;
-cursor:pointer;
+background:#222;
+color:white;
+border:1px solid gray;
 }
 
-/* RAIN DROPS */
+.okBtn{
+background:#eee;
+color:black;
+}
+
+/* RAIN EMOJIS */
 
 .rain{
-position:fixed;
+position:absolute;
 top:-50px;
-font-size:22px;
-opacity:0.25;
+font-size:26px;
+opacity:0.4;
 animation:fall linear infinite;
-z-index:-1;
 }
 
 @keyframes fall{
-0%{transform:translateY(-100px);}
-100%{transform:translateY(120vh);}
+to{
+transform:translateY(110vh);
+}
 }
 
-/* ENVELOPE */
+/* PAGE SECTIONS */
 
-.envelope{
-width:200px;
-height:120px;
-background:white;
-margin:30px auto;
-position:relative;
-cursor:pointer;
-border-radius:6px;
+.page{
+display:none;
+height:100vh;
+padding-top:40px;
 }
 
-.flap{
-width:100%;
-height:100%;
-background:#ffb6c1;
-position:absolute;
-top:0;
-left:0;
-transform-origin:top;
-transition:1s;
-}
-
-.envelope.open .flap{
-transform:rotateX(180deg);
+.active{
+display:block;
 }
 
 /* LETTER PAGE */
 
-.sakuraBg{
-
-position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-
-background:
-radial-gradient(circle at top left,#ffd6ec,#ffc2e2),
-radial-gradient(circle at bottom right,#ffcde6,#ffb8dd);
-
-z-index:-2;
-
+.letterPage{
+background:pink;
+background-image:url("https://i.imgur.com/2RXY6hF.png");
+background-size:cover;
 }
 
-/* PETALS */
-
-.petal{
-position:fixed;
-top:-10px;
-font-size:18px;
-animation:petalFall linear infinite;
-opacity:0.9;
-}
-
-@keyframes petalFall{
-
-0%{
-transform:translateY(-50px) rotate(0deg);
-}
-
-100%{
-transform:translateY(120vh) rotate(360deg);
-}
-
-}
-
-/* SPARKLES */
-
-.sparkle{
-position:fixed;
-font-size:14px;
-animation:twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle{
-from{opacity:0.2}
-to{opacity:1}
-}
-
-/* MESSAGE CARD */
-
-.messageCard{
-
+.letterBox{
 background:white;
-
-color:#444;
-
+color:black;
 width:85%;
-max-width:420px;
-
-height:320px;
-
+height:60vh;
+margin:auto;
 padding:20px;
-
-border-radius:20px;
-
-box-shadow:
-0 0 25px rgba(255,182,193,0.8),
-0 0 60px rgba(255,200,230,0.4);
-
-overflow-y:auto;
-
-font-size:14px;
-line-height:1.6;
-
+overflow-y:scroll;
+border-radius:15px;
+font-size:22px;
 }
 
-/* CORNER FLOWERS */
-
-.cornerFlower{
-
-position:fixed;
-font-size:50px;
-opacity:0.8;
-
+.openBtn{
+background:#ff9ecb;
+font-size:24px;
+padding:16px 35px;
 }
-
-.topLeft{top:10px;left:10px}
-.topRight{top:10px;right:10px}
-.bottomLeft{bottom:10px;left:10px}
-.bottomRight{bottom:10px;right:10px}
 
 </style>
 </head>
 
 <body>
 
-<video id="bgVideo" class="bgVideo" autoplay muted loop>
+<!-- PAGE 1 -->
+
+<div id="page1" class="page active">
+
+<video class="bg" autoplay muted loop>
 <source src="storm.mp4" type="video/mp4">
 </video>
 
-<div class="container" id="mainPage">
-
-<p class="glowText">
-I've been.. sad since yesterday because we couldn't get to talk
-and I ended up making you feel ignored once again..
-</p>
+<div class="mainText">
+I've been.. sad since yesterday because we couldn't get to talk and i ended up making you feel ignored once again..
+</div>
 
 <video class="chibi" autoplay muted loop>
 <source src="chibi-cry.mp4" type="video/mp4">
 </video>
 
-<p class="secondText">
-I'm sorry I could never change and I always ended up hurting you
-</p>
+<div class="subText">
+I'm sorry i could never change and i always ended up hurting you
+</div>
 
-<p class="question">Can we talk please?</p>
+<div class="question">
+Can we talk please?
+</div>
 
-<div class="buttons">
+<button class="talkBtn" onclick="showPage('page3')">🌸 Sure let's talk</button>
+<br>
+<button class="noBtn" onclick="showPage('page2');startRain()">I've no time</button>
 
-<button class="talkBtn" onclick="showHappyPage()">
-🌸 Sure let's talk
+</div>
+
+<!-- PAGE 2 SAD -->
+
+<div id="page2" class="page">
+
+<video class="bg" autoplay muted loop>
+<source src="rain.mp4" type="video/mp4">
+</video>
+
+<video class="chibi" autoplay muted loop>
+<source src="chibi-sad.mp4" type="video/mp4">
+</video>
+
+<div class="mainText">
+please talk with me 😭😭
+</div>
+
+<button class="okBtn" onclick="stopRain();showPage('page3')">
+*sigh* ok
 </button>
 
-<button class="noBtn" onclick="showRainScene()">
-I've no time
+</div>
+
+<!-- PAGE 3 SUNSHINE -->
+
+<div id="page3" class="page">
+
+<video class="bg" autoplay muted loop>
+<source src="sunshine.mp4" type="video/mp4">
+</video>
+
+<div class="mainText">
+My sincerest apologise letter for my dearest vanshika
+</div>
+
+<video class="chibi" autoplay muted loop>
+<source src="chibi-happy.mp4" type="video/mp4">
+</video>
+
+<div class="subText">
+I'm sorry i have been too busy lately and i couldn't find right way to apologise
+</div>
+
+<button class="openBtn" onclick="showPage('page4')">
+Open the letter
 </button>
+
+</div>
+
+<!-- PAGE 4 LETTER -->
+
+<div id="page4" class="page letterPage">
+
+<h1>For Vanshika 💌</h1>
+
+<div class="letterBox">
+
+I am sorry vanshika for not being able to show enough care i genuinely care alot about you and you matter to me more than anyone idk what happened between you or sumi idc about sumi at all i genuinely love talking to you and it's understandable if you can't forgive me but i deeply deeply apologise from bottom of my heart that i ended up causing you sfm trouble and made you so sad as well i am sorry i couldn't be a good person i won't disturb you at all i'll do whatever you tell me to do but I'm genuinely sorry really really sorry once again,i don't know how to show how much i care for you because i am immature ik i'll try to be better genuinely because I don't wanna loose you,i won't tell anyone that i have feelings for you either as you told me to do so i'll try to set boundaries with others in different way from now on so once again i am sorry for how much trouble you had to endure cuz of me idk if you'll forgive me or not but I'm always here for you please take care eat well rest well i will be here for you always because you're the most precious and most desrest to me and you matter to me alot more than you think you are important to me more than you'll ever know i'll always choose you above any of the rest of the people so be it anyone from thst gc I'm always choosing you 🫶🏻🫶🏻 you're the best and you'll always be the best to me sorry if I've been too nonchalant nowadays lately too kind of dealing with my own stress of future but hey remember old dante will be back soon will be better and laughing one next time adios!!!🗣️
 
 </div>
 
@@ -289,31 +232,19 @@ I've no time
 
 <script>
 
-/* RAIN SCENE */
+function showPage(page){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(page).classList.add("active");
+}
 
-function showRainScene(){
+/* RAIN EMOJI EFFECT */
 
-document.getElementById("bgVideo").src="rain.mp4";
+let rainInterval;
 
-document.getElementById("mainPage").innerHTML=`
+function startRain(){
 
-<video class="chibi" autoplay muted loop>
-<source src="chibi-sad.mp4" type="video/mp4">
-</video>
-
-<p class="question">please talk with me i beg you please talk with meeee i love talking to youuuu😭😭</p>
-
-<div class="buttons">
-<button class="talkBtn" onclick="showHappyPage()">
-*sigh* ok.
-</button>
-</div>
-`;
-
-for(let i=0;i<80;i++){
-
+rainInterval=setInterval(()=>{
 let drop=document.createElement("div");
-
 drop.className="rain";
 drop.innerHTML="💧";
 
@@ -322,89 +253,14 @@ drop.style.animationDuration=(Math.random()*0.5+0.5)+"s";
 
 document.body.appendChild(drop);
 
-}
+setTimeout(()=>{drop.remove();},2000);
+
+},100);
 
 }
 
-/* HAPPY PAGE */
-
-function showHappyPage(){
-
-document.querySelectorAll(".rain").forEach(r=>r.remove());
-
-document.getElementById("bgVideo").src="sunshine.mp4";
-
-document.getElementById("mainPage").innerHTML=`
-
-<h2>My sincerest apologise letter for my dearest Vanshika</h2>
-
-<video class="chibi" autoplay muted loop>
-<source src="chibi-happy.mp4" type="video/mp4">
-</video>
-
-<p class="secondText">
-I'm sorry i have been too busy lately and i couldn't find right way to apologise
-</p>
-
-<div class="buttons">
-<button class="talkBtn" onclick="openLetter()">
-Open the letter
-</button>
-</div>
-
-`;
-
-}
-
-/* LETTER PAGE */
-
-function openLetter(){
-
-document.body.innerHTML=`
-
-<div class="sakuraBg"></div>
-
-<div class="cornerFlower topLeft">🌸</div>
-<div class="cornerFlower topRight">🌸</div>
-<div class="cornerFlower bottomLeft">🌸</div>
-<div class="cornerFlower bottomRight">🌸</div>
-
-<div class="messageCard">
-
-I am sorry vanshika for not being able to show enough care i genuinely care alot about you and you matter to me more than anyone idk what happened between you or sumi idc about sumi at all i genuinely love talking to you and it's understandable if you can't forgive me but i deeply deeply apologise from bottom of my heart that i ended up causing you sfm trouble and made you so sad as well i am sorry i couldn't be a good person i won't disturb you at all i'll do whatever you tell me to do but I'm genuinely sorry really really sorry once again,i don't know how to show how much i care for you because i am immature ik i'll try to be better genuinely because I don't wanna loose you,i won't tell anyone that i have feelings for you either as you told me to do so i'll try to set boundaries with others in different way from now on so once again i am sorry for how much trouble you had to endure cuz of me idk if you'll forgive me or not but I'm always here for you please take care eat well rest well i will be here for you always because you're the most precious and most desrest to me and you matter to me alot more than you think you are important to me more than you'll ever know i'll always choose you above any of the rest of the people so be it anyone from thst gc I'm always choosing you 🫶🏻🫶🏻 you're the best and you'll always be the best to me sorry if I've been too nonchalant nowadays lately too kind of dealing with my own stress of future,also thank you for always being wimme and making me laugh always,i don't want you to worry about anything okay? but hey remember old dante will be back soon will be better and laughing one next time adios!!!🗣️
-
-</div>
-
-`;
-
-for(let i=0;i<60;i++){
-
-let petal=document.createElement("div");
-
-petal.className="petal";
-petal.innerHTML="🌸";
-
-petal.style.left=Math.random()*100+"vw";
-petal.style.animationDuration=(Math.random()*1+3)+"s";
-
-document.body.appendChild(petal);
-
-}
-
-for(let i=0;i<20;i++){
-
-let spark=document.createElement("div");
-
-spark.className="sparkle";
-spark.innerHTML="✨";
-
-spark.style.left=Math.random()*100+"vw";
-spark.style.top=Math.random()*100+"vh";
-
-document.body.appendChild(spark);
-
-}
-
+function stopRain(){
+clearInterval(rainInterval);
 }
 
 </script>
