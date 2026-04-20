@@ -126,37 +126,9 @@ z-index:-1;
 100%{transform:translateY(120vh);}
 }
 
-/* ENVELOPE */
-
-.envelope{
-width:400px;
-height:240px;
-background:white;
-margin:30px auto;
-position:relative;
-cursor:pointer;
-border-radius:6px;
-}
-
-.flap{
-width:100%;
-height:100%;
-background:#ffb6c1;
-position:absolute;
-top:0;
-left:0;
-transform-origin:top;
-transition:1s;
-}
-
-.envelope.open .flap{
-transform:rotateX(180deg);
-}
-
 /* LETTER PAGE */
 
 .sakuraBg{
-
 position:fixed;
 width:100%;
 height:100%;
@@ -168,7 +140,6 @@ radial-gradient(circle at top left,#ffd6ec,#ffc2e2),
 radial-gradient(circle at bottom right,#ffcde6,#ffb8dd);
 
 z-index:-2;
-
 }
 
 /* PETALS */
@@ -182,15 +153,8 @@ opacity:0.9;
 }
 
 @keyframes petalFall{
-
-0%{
-transform:translateY(-50px) rotate(0deg);
-}
-
-100%{
-transform:translateY(120vh) rotate(360deg);
-}
-
+0%{transform:translateY(-50px) rotate(0deg);}
+100%{transform:translateY(120vh) rotate(360deg);}
 }
 
 /* SPARKLES */
@@ -209,39 +173,27 @@ to{opacity:1}
 /* MESSAGE CARD */
 
 .messageCard{
-
 background:white;
-
 color:#444;
-
 width:85%;
 max-width:420px;
-
 height:320px;
-
 padding:20px;
-
 border-radius:20px;
-
 box-shadow:
 0 0 25px rgba(255,182,193,0.8),
 0 0 60px rgba(255,200,230,0.4);
-
 overflow-y:auto;
-
 font-size:18px;
 line-height:1.6;
-
 }
 
 /* CORNER FLOWERS */
 
 .cornerFlower{
-
 position:fixed;
 font-size:80px;
 opacity:0.8;
-
 }
 
 .topLeft{top:10px;left:10px}
@@ -253,6 +205,11 @@ opacity:0.8;
 </head>
 
 <body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
 
 <video id="bgVideo" class="bgVideo" autoplay muted loop>
 <source src="storm.mp4" type="video/mp4">
@@ -290,6 +247,11 @@ I've no time
 </div>
 
 <script>
+
+/* start music on first interaction */
+document.body.addEventListener("click", function(){
+document.getElementById("bgMusic").play();
+},{once:true});
 
 /* RAIN SCENE */
 
